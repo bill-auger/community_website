@@ -1,0 +1,17 @@
+<h1>Projects created by LiveCoding.TV streamers</h1>
+
+<%= link_to 'Add Project' , new_project_path %>
+
+<table id="projects-table">
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td class="projects-name-td"><%= link_to project.name , project %></td>
+        <td class="projects-desc-td"><%= project.desc %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

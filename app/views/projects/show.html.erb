@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to '<-- Back' , projects_path                                                         %> |
+<%= link_to 'Edit'     , edit_project_path(@project)                                           %> |
+<%= link_to 'Destroy'  , @project , :method => :delete , :data => { confirm: 'Are you sure?' } %>
+
+<h1><%= @project.name %></h1>
+
+<div>
+  <p><strong>Repo URL:</strong></p>
+  <%= link_to @project.repo , @project.repo %>
+</div>
+
+<p>&nbsp;</p>
+
+<div>
+  <p><strong>Description:</strong></p>
+  <%= @project.desc %>
+</div>
