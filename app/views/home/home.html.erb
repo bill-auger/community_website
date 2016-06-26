@@ -1,2 +1,18 @@
-<style>#mock-frame { position: absolute ; width: 100% ; top: 264px ; }</style>
-<iframe id="mock-frame" src="http://afterdesign.ru/tools/index.php"></iframe>
+<style>
+#dummy-bg-div { position: absolute ; height: 100% ;
+                background-image: url('<%= image_url "dummy-bg.png" %>') ;
+                background-size: 100% 100% ; }
+
+#dummy-content-div    { font-size: 18pt ; margin: 16% ; padding: 1px 48px 24px 48px ;
+                        background-image: url('<%= image_url "dummy-content.png" %>') ;
+                        background-size: 106% 106% ; background-position: -16px -6px ; }
+#dummy-content-div h1 { font-size: 36pt ; }
+</style>
+
+<div id="dummy-bg-div">
+  <div id="dummy-content-div">
+    <h1>Under Construction</h1>
+    <p>this website is being created by and for the streamers and viewers of livecoding.tv - feel free to join in with your comments or contributions on github</p>
+    <p><a href="https://github.com/LiveCodingTVOfficial/community_website">https://github.com/LiveCodingTVOfficial/community_website</a></p>
+  </div>
+</div>
