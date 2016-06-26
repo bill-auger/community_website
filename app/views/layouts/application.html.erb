@@ -6,7 +6,39 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
+
+<% lctv_user = 'afterdesign' %>
+
+
+<div id="top-nav-div" class="nav">
+  <span>
+    <%= image_tag 'livecodinglogo-inverted.png' , :id      => 'top-nav-logo-img'                    ,
+                                                  :onclick => 'navigate("' + LCTV_URL + '") ;' ,
+                                                  :alt     => 'livecoding.tv logo'                  %>
+  </span>
+
+  <span onclick="navigate('/'                        ) ;">Home</span>
+  <span onclick="navigate('<%= LCTV_BADGES_URL    %>') ;">Badges</span>
+  <span onclick="navigate('<%= LCTV_EMOTICONS_URL %>') ;">Emoticons</span>
+  <span onclick="navigate('<%= LCTV_PROJECTS_URL  %>') ;">Projects</span>
+
+  <span id="top-nav-r-span">
+    <%= image_tag 'mail.png' ,    :id      => 'top-nav-icon' ,
+                                  :onclick => 'navigate("' + LCTV_URL + lctv_user + '/settings/messages/") ;' ,
+                                  :alt     => 'messages'     %>
+    <%= image_tag 'bell.png' ,    :id      => 'top-nav-icon' ,
+                                  :onclick => 'navigate("' + LCTV_URL + lctv_user + '/settings/notifications/") ;' ,
+                                  :alt     => 'notifications'%>
+    <%= image_tag 'follows.png' , :id      => 'top-nav-icon' ,
+                                  :onclick => 'navigate("' + LCTV_URL + lctv_user + '/settings/followers/") ;' ,
+                                  :alt     => 'follows'      %>
+    <%= image_tag AV_URL ,        :id      => 'top-nav-icon' ,
+                                  :onclick => 'navigate("' + LCTV_URL + lctv_user + '/") ;' ,
+                                  :alt     => 'avatar'       %>
+  </span>
+</div>
 
 <%= yield %>
 
