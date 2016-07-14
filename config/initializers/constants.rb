@@ -5,4 +5,3 @@ LCTV_URL           = 'https://www.livecoding.tv/'
 LCTV_BADGES_URL    = '/badges' # TODO:
 LCTV_EMOTICONS_URL = '/emoticons'
 LCTV_PROJECTS_URL  = '/projects'
-AV_URL = 'http://afterdesign.ru/tools/static/img/av.jpg' # FIXME:
