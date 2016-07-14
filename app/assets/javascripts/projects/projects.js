@@ -1,5 +1,8 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+
 /**\
-|**| @source: https://raw.githubusercontent.com/LiveCodingTVOfficial/community_website/master/app/assets/javascripts/app.js
+|**| @source: https://raw.githubusercontent.com/LiveCodingTVOfficial/community_website/master/app/assets/javascripts/projects.js
 |**|
 |**| @licstart  The following is the entire license notice for the
 |**|  JavaScript code in this page.
@@ -24,6 +27,3 @@
 |**| @licend  The above is the entire license notice
 |**| for the JavaScript code in this page.
 \**/
-
-
-function navigate(url) { window.location = url ; }

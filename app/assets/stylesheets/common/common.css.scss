@@ -1,3 +1,8 @@
+// Place styles that are not specific to any particular views here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
 /* global */
 
 body {
@@ -7,7 +12,6 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
 }
 
-#content-div { padding: 12px ; }
 
 pre {
   background-color: #eee;
@@ -65,17 +69,27 @@ div {
   }
 }
 
+#content-div { padding: 12px ; }
+
 
 /* top navbar */
 
-.nav span { text-decoration: none ;  color: #768E9E ; font-weight: 600 ; font-size: 16px ; }
-
-#top-nav-div , #top-nav-div span , #top-nav-logo-a { height: 64px ; }
+/* top navbar common */
+#top-nav-div , #top-nav-div span { height: 64px ; }
 #top-nav-div      { width: 100% ; background-color: #161a1e ; }
 #top-nav-div span { display: table-cell ; padding-left: 20px ; vertical-align: middle ;
-                    cursor: pointer ; }
-#top-nav-r-span   { position: absolute ; top: 0px ; right: 20px ; }
+                    text-decoration: none ;  color: #768E9E ; cursor: pointer ; }
 
-#top-nav-logo-img   { margin-top: 4px ; height: 32px ; }
-#top-nav-r-span img { margin-top: 10px ; height: 42px ; }
-#nav-menu-span      { display: none ; }
+/* top navbar l */
+#top-nav-logo-img { height: 42px ; }
+
+/* top navbar c */
+#top-nav-c-span span { position: relative ; top: -2px ; font-weight: 600 ; font-size: 16px ; }
+
+/* top navbar r */
+#top-nav-r-span      { position: absolute ; top: 0px ; right: 20px ; }
+#top-nav-r-span span { position: relative ; top: 14px ; width: 6em ; height: 2em ;
+                       border: 1px solid #888 ; padding-left: 0px ; text-align: center ; }
+#signup-span         { background-color: #768E9E ; color: #161a1e !important ; }
+#top-nav-r-span img  { margin-top: 10px ; height: 42px ; }
+#nav-menu-span       { display: none ; } /* TODO: */
