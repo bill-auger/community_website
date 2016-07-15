@@ -34,9 +34,9 @@
 
 <span id="top-nav-c-span" class="top-nav-cell">
   <span onclick="window.location = '/'                         ; ">Home</span>
+  <span onclick="window.location = '<%= LCTV_PROJECTS_URL  %>' ; ">Projects</span>
   <span onclick="window.location = '<%= LCTV_BADGES_URL    %>' ; ">Badges</span>
   <span onclick="window.location = '<%= LCTV_EMOTICONS_URL %>' ; ">Emoticons</span>
-  <span onclick="window.location = '<%= LCTV_PROJECTS_URL  %>' ; ">Projects</span>
 </span>
 
 <span id="top-nav-r-span" class="top-nav-cell">
@@ -50,16 +50,16 @@
   <% fans_url   = LCTV_URL + lctv_user + '/settings/followers/'     %>
   <% user_url   = LCTV_URL + lctv_user + '/'                        %>
 
-  <%= image_tag 'mail.png'    , :id      => 'top-nav-icon'                        ,
+  <%= image_tag 'mail.png'    , :id      => 'top-nav-mail-img'                    ,
                                 :onclick => "window.location = '#{mail_url  }' ;" ,
                                 :alt     => "messages"                            %>
-  <%= image_tag 'bell.png'    , :id      => 'top-nav-icon'                        ,
+  <%= image_tag 'bell.png'    , :id      => 'top-nav-alerts-img'                  ,
                                 :onclick => "window.location = '#{alerts_url}' ;" ,
                                 :alt     => "notifications"                       %>
-  <%= image_tag 'follows.png' , :id      => 'top-nav-icon'                        ,
+  <%= image_tag 'follows.png' , :id      => 'top-nav-fans-img'                    ,
                                 :onclick => "window.location = '#{fans_url  }' ;" ,
                                 :alt     => "follows"                             %>
-  <%= image_tag 'my-mm.png'   , :id      => 'top-nav-icon'                        ,
+  <%= image_tag 'my-mm.png'   , :id      => 'top-nav-user-img'                    ,
                                 :onclick => "window.location = '#{user_url  }' ;" ,
                                 :alt     => "avatar"                              %>
 <% end %>

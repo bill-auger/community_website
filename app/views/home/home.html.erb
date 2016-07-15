@@ -1,18 +1,63 @@
+<!-- FIXME: dummy content begin -->
 <style>
-#dummy-bg-div { position: absolute ; height: 100% ;
-                background-image: url('<%= image_url "dummy-bg.png" %>') ;
-                background-size: 100% 100% ; }
+#content-bg-div { position: absolute ; width: 100% ; height: 100% ;
+                  background-image: url('<%= image_url "lctv-users-home.png" %>') ;
+                  background-size: 100% 100% ; }
+#dummy-bg-div   { position: absolute ; width: 100% ; height: 100% ;
+                  background-image: url('<%= image_url "dim-alpha.png" %>') ;
+                  background-size: 100% 100% ; }
 
-#dummy-content-div    { font-size: 18pt ; margin: 16% ; padding: 1px 48px 24px 48px ;
-                        background-image: url('<%= image_url "dummy-content.png" %>') ;
-                        background-size: 106% 106% ; background-position: -16px -6px ; }
-#dummy-content-div h1 { font-size: 36pt ; }
+#description-div { position: absolute ; left: 6% ; top: 26% ; right: 35% ; bottom: 18% ;
+                   overflow: auto ; font-size: 16pt ; padding: 1em ;
+                   border: 3px solid #5b74e3 ; border-radius: 1em ;
+                   background-image: url('<%= image_url "dim-alpha.png" %>') ;
+                   background-size: 100% 100% ; }
+
+#featured-div       { position: absolute ; left: 71% ; top: 22% ; }
+#featured-header-p  { color: #5b74e3 ; }
+.featured-project-p { margin-left: 2em; }
+
+#dummy-content-div         { position: absolute ; top: 12px ; left: 33% ; right: 12px ; bottom: 33% ;
+                             padding-left: 48px ; padding-right: 48px ; overflow: auto ;
+                             background-image: url('<%= image_url "dummy-content.png" %>') ;
+                             background-size: 104% 106% ; font-size: 18pt ; }
+#dummy-content-div h1      { font-size: 36pt ; }
+#dummy-content-dismiss-img { position: absolute ; right: 0px ; cursor: pointer ; }
 </style>
 
-<div id="dummy-bg-div">
+
+<div id="content-bg-div">
+  <div id="description-div">
+    Welcome! This is the center of collaboration and discussion for LCTV viewers and streamers.
+    It is also a directory of projects built and maintained by LCTV streamers.
+    It is driven, built, and maintained by members of the LCTV community like you.
+    <p>Some of the features you will find here include:</p>
+    <ul>
+      <li>Project maintainers may list their projects as accepting contributions</li>
+      <li>Newcomers can search for projects to join matching their experience</li>
+      <li>Project maintainers may showcase thier finished projects</li>
+      <li>Customizable Polls</li>
+      <li>Discussion Forum</li>
+    </ul>
+  </div>
+
+  <div id="featured-div">
+    <p id="featured-header-p">Featured Projects:</p>
+    <% @featured_projects.each do | a_project | %>
+      <p class="featured-project-p"><%= "=> " ; link_to a_project.name , a_project ; %></p>
+    <% end %>
+  </div>
+</div>
+
+<div id="dummy-bg-div" onclick="this.style.display = 'none' ; ">
   <div id="dummy-content-div">
+    <%= image_tag 'process-stop.png' , :id      => 'dummy-content-dismiss-img'      ,
+                                       :onclick => "this.style.display = 'none' ; " ,
+                                       :alt     => "follows"                        %>
     <h1>Under Construction</h1>
-    <p>this website is being created by and for the streamers and viewers of livecoding.tv - feel free to join in with your comments or contributions on github</p>
+    <p>This website is being created by and for the streamers and viewers of livecoding.tv.</p>
+    <p>Feel free to join in with your comments or contributions on GitHub.</p>
     <p><a href="https://github.com/LiveCodingTVOfficial/community_website">https://github.com/LiveCodingTVOfficial/community_website</a></p>
   </div>
 </div>
+<!-- FIXME: dummy content end -->

@@ -69,8 +69,6 @@ div {
   }
 }
 
-#content-div { padding: 12px ; }
-
 
 /* top navbar */
 
@@ -93,3 +91,8 @@ div {
 #signup-span         { background-color: #768E9E ; color: #161a1e !important ; }
 #top-nav-r-span img  { margin-top: 10px ; height: 42px ; }
 #nav-menu-span       { display: none ; } /* TODO: */
+
+
+/* main content */
+
+#content-div { position: fixed ; left: 0px ; top: 64px ; right: 0px ; bottom: 0px ; }

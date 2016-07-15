@@ -1,1 +1,7 @@
-class HomeController < ApplicationController ; def home ; end ; end ;
+class HomeController < ApplicationController
+
+  def home
+    @featured_projects = Project.all[0..4]
+  end
+
+end
