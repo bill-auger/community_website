@@ -6,10 +6,12 @@
 
 <h1><%= @project.name %></h1>
 
-<div>
-  <p><strong>Repo URL:</strong></p>
-  <%= link_to @project.repo , @project.repo %>
-</div>
+<% if @project.repo.present? %>
+  <div>
+    <p><strong>Repo URL:</strong></p>
+    <%= link_to @project.repo , @project.repo %>
+  </div>
+<% end %>
 
 <p>&nbsp;</p>
 

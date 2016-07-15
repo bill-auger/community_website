@@ -3,8 +3,9 @@ Lctv::Application.routes.draw do
   resources :users
 
   root :controller => "home" , :action => "home"
-  get  'badges'    => 'home#badges'
-  get  'emoticons' => 'home#emoticons'
+
+  get 'badges'    => 'home#badges'
+  get 'emoticons' => 'home#emoticons'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
