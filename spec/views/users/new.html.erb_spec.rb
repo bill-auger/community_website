@@ -20,7 +20,7 @@ RSpec.describe 'users/new' , :type => :view do
     (expect response).to render_template :new
 
     assert_select 'form[action=?][method=?]' , users_path , :post do
-      assert_select 'input#user_nick[name=?][readonly]' , 'user[nick]'
+      assert_select 'input#user_nick[name=?]' , 'user[nick]'
     end
   end
 end

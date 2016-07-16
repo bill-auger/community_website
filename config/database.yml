@@ -4,7 +4,7 @@ development:
   pool: 5
   timeout: 5000
 
-test:
+test: &test
   adapter: sqlite3
   database: db/test.sqlite3
   pool: 5
@@ -18,3 +18,6 @@ production:
   database: <%= ENV['LCTV_DATABASE_NAME'    ] %>
   username: <%= ENV['LCTV_DATABASE_LOGIN'   ] %>
   password: <%= ENV['LCTV_DATABASE_PASSWORD'] %>
+
+cucumber:
+  <<: *test

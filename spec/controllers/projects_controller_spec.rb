@@ -29,7 +29,7 @@ RSpec.describe ProjectsController , :type => :controller do
   describe 'GET #show' do
     it "assigns the requested project as @project" do
       project = Project.create! valid_attributes
-      get :show , :id => project.id , :params => { :id => project.to_param } , :session => valid_session
+      get :show , :id => project.id , :session => valid_session
       (expect assigns :project).to eq project
     end
   end
@@ -37,7 +37,7 @@ RSpec.describe ProjectsController , :type => :controller do
   describe 'GET #edit' do
     it "assigns the requested project as @project" do
       project = Project.create! valid_attributes
-      get :edit , :id => project.id , :params => { :id => project.to_param } , :session => valid_session
+      get :edit , :id => project.id , :session => valid_session
       (expect assigns :project).to eq project
     end
   end
@@ -125,20 +125,20 @@ RSpec.describe ProjectsController , :type => :controller do
 
       it "updates the requested project" do
         project = Project.create! valid_attributes
-        put :update , :id => project.id , :params => { :id => project.to_param , :project => new_attributes } , :session => valid_session
+        put :update , :id => project.id , :params => { :project => new_attributes } , :session => valid_session
         project.reload
         (expect project.name).to eq 'An Awesome Project'
       end
 
       it "assigns the requested project as @project" do
         project = Project.create! valid_attributes
-        put :update , :id => project.id , :params => { :id => project.to_param , :project => valid_attributes } , :session => valid_session
+        put :update , :id => project.id , :params => { :project => valid_attributes } , :session => valid_session
         (expect assigns :project).to eq project
       end
 
       it "redirects to the project" do
         project = Project.create! valid_attributes
-        put :update , :id => project.id , :params => { :id => project.to_param , :project => valid_attributes } , :session => valid_session
+        put :update , :id => project.id , :params => { :project => valid_attributes } , :session => valid_session
         (expect response).to redirect_to project
       end
     end
@@ -146,13 +146,13 @@ RSpec.describe ProjectsController , :type => :controller do
     context "with invalid params" do
       it "assigns the project as @project" do
         project = Project.create! valid_attributes
-        put :update , :id => project.id , :params => { :id => project.to_param , :project => invalid_attributes } , :session => valid_session
+        put :update , :id => project.id , :params => { :project => invalid_attributes } , :session => valid_session
         (expect assigns :project).to eq project
       end
 
       it "re-renders the 'edit' template" do
         project = Project.create! valid_attributes
-        put :update , :id => project.id , :params => { :id => project.to_param , :project => invalid_attributes } , :session => valid_session
+        put :update , :id => project.id , :params => { :project => invalid_attributes } , :session => valid_session
         (expect response).to render_template :edit
       end
     end
@@ -208,13 +208,13 @@ RSpec.describe ProjectsController , :type => :controller do
     it "destroys the requested project" do
       project = Project.create! valid_attributes
       expect {
-        delete :destroy , :id => project.id , :params => { :id => project.to_param } , :session => valid_session
+        delete :destroy , :id => project.id , :session => valid_session
       }.to (change Project , :count).by -1
     end
 
     it "redirects to the projects list" do
       project = Project.create! valid_attributes
-      delete :destroy , :id => project.id , :params => { :id => project.to_param } , :session => valid_session
+      delete :destroy , :id => project.id , :session => valid_session
       (expect response).to redirect_to projects_url
     end
   end

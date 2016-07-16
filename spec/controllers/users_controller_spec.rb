@@ -25,7 +25,7 @@ RSpec.describe UsersController , :type => :controller do
   describe 'GET #show' do
     it "assigns the requested user as @user" do
       user = User.create! valid_attributes
-      get :show , :id => user.id , :params => { :id => user.to_param } , :session => valid_session
+      get :show , :nick => user.nick , :session => valid_session
       (expect assigns :user).to eq user
     end
   end
@@ -33,7 +33,7 @@ RSpec.describe UsersController , :type => :controller do
   describe 'GET #edit' do
     it "assigns the requested user as @user" do
       user = User.create! valid_attributes
-      get :edit , :id => user.id , :params => { :id => user.to_param } , :session => valid_session
+      get :edit , :nick => user.nick , :session => valid_session
       (expect assigns :user).to eq user
     end
   end
@@ -103,64 +103,66 @@ RSpec.describe UsersController , :type => :controller do
       let(:new_attributes) { { :nick => 'a-nick' , :bio => 'Another bio.' } }
 
       it "assigns the requested user as @user" do
-        put :update , :id => @user.id , :params => { :user => new_attributes } , :session => valid_session
+        put :update , :nick => @user.nick , :params => { :user => new_attributes } , :session => valid_session
         (expect assigns :user).to eq @user
       end
 
       it "updates the requested user" do
-        put :update , :id => @user.id , :params => { :user => new_attributes } , :session => valid_session
+        put :update , :nick => @user.nick , :params => { :user => new_attributes } , :session => valid_session
         @user.reload
         (expect @user.bio).to eq 'Another bio.'
       end
 
       it "redirects to the user" do
-        put :update , :id => @user.id , :params => { :user => new_attributes } , :session => valid_session
+        put :update , :nick => @user.nick , :params => { :user => new_attributes } , :session => valid_session
         (expect response).to redirect_to @user
       end
     end
 
     context "with invalid params" do
       it "assigns the user as @user" do
-        put :update , :id => @user.id , :params => { :user => invalid_attributes } , :session => valid_session
+        put :update , :nick => @user.nick , :params => { :user => invalid_attributes } , :session => valid_session
         (expect assigns :user).to eq @user
       end
 
       it "re-renders the 'edit' template" do
-        put :update , :id => @user.id , :params => { :user => invalid_attributes } , :session => valid_session
+        put :update , :nick => @user.nick , :params => { :user => invalid_attributes } , :session => valid_session
         (expect response).to render_template :edit
       end
     end
 
     context "with modified nick" do
       it "assigns the user as @user" do
-        put :update , :id => @user.id , :params => { :user => valid_attributes2 } , :session => valid_session
+        put :update , :nick => @user.nick , :params => { :user => valid_attributes2 } , :session => valid_session
         (expect assigns :user).to eq @user
       end
 
       it "does not update user" do
-        put :update , :id => @user.id , :params => { :user => valid_attributes2 } , :session => valid_session
+        put :update , :nick => @user.nick , :params => { :user => valid_attributes2 } , :session => valid_session
         @user.reload
         (expect @user.nick).not_to eq valid_attributes2[:nick]
       end
 
       it "re-renders the 'edit' template" do
-        put :update , :id => @user.id , :params => { :user => valid_attributes2 } , :session => valid_session
+        put :update , :nick => @user.nick , :params => { :user => valid_attributes2 } , :session => valid_session
         (expect response).to render_template :edit
       end
     end
   end
 
   describe 'DELETE #destroy' do
+    before :each do
+      @user = User.create! valid_attributes
+    end
+
     it "destroys the requested user" do
-      user = User.create! valid_attributes
       expect {
-        delete :destroy , :id => user.id , :params => { :id => user.to_param } , :session => valid_session
+        delete :destroy , :nick => @user.nick , :session => valid_session
       }.to (change User , :count).by -1
     end
 
     it "redirects to the users list" do
-      user = User.create! valid_attributes
-      delete :destroy , :id => user.id , :params => { :id => user.to_param } , :session => valid_session
+      delete :destroy , :nick => @user.nick , :session => valid_session
       (expect response).to redirect_to users_url
     end
   end

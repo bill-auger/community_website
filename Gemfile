@@ -36,7 +36,13 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 group :development , :test do
   gem 'sqlite3'
+  gem 'byebug'
+end
+
+group :test do
   gem 'rspec-rails' , '~> 3.5'
+  gem 'cucumber-rails' , :require => false
+  gem 'database_cleaner'
 end
 
 group :production do

@@ -27,40 +27,42 @@
 
 
 <span id="top-nav-l-span" class="top-nav-cell">
-  <%= image_tag 'lctv-users-logo.png' , :id      => 'top-nav-logo-img'               ,
-                                        :onclick => 'navigate("' + LCTV_URL + '") ;' ,
-                                        :alt     => 'livecoding.tv logo'             %>
+  <a href="<%= LCTV_URL %>" id="top-nav-logo-a">
+    <%= image_tag 'lctv-users-logo.png' , :alt => 'livecoding.tv logo' %>
+  </a>
 </span>
 
 <span id="top-nav-c-span" class="top-nav-cell">
-  <span onclick="window.location = '/'                         ; ">Home</span>
-  <span onclick="window.location = '<%= LCTV_PROJECTS_URL  %>' ; ">Projects</span>
-  <span onclick="window.location = '<%= LCTV_BADGES_URL    %>' ; ">Badges</span>
-  <span onclick="window.location = '<%= LCTV_EMOTICONS_URL %>' ; ">Emoticons</span>
+  <a href="/">Home</a>
+  <a href="<%= LCTV_PROJECTS_URL  %>">Projects</a>
+  <a href="<%= LCTV_USERS_URL     %>">Users</a>
+  <a href="<%= LCTV_BADGES_URL    %>">Badges</a>
+  <a href="<%= LCTV_EMOTICONS_URL %>">Emoticons</a>
 </span>
 
 <span id="top-nav-r-span" class="top-nav-cell">
-<% lctv_user = '' %><!-- FIXME: -->
-<% if lctv_user.blank? %>
-  <span id="login-span"  onclick="window.location = '<%= LCTV_URL %>accounts/login' ; ">LOGIN</span>
-  <span id="signup-span" onclick="window.location = '<%= LCTV_URL %>signup' ; "        >SIGN UP</span>
-<% else %>
-  <% mail_url   = LCTV_URL + lctv_user + '/settings/messages/'      %>
-  <% alerts_url = LCTV_URL + lctv_user + '/settings/notifications/' %>
-  <% fans_url   = LCTV_URL + lctv_user + '/settings/followers/'     %>
-  <% user_url   = LCTV_URL + lctv_user + '/'                        %>
+<% @lctv_user ||= 'SIGNED_IN' %><% def signed_in? ; @lctv_user.present? ; end ; %><!-- FIXME: -->
 
-  <%= image_tag 'mail.png'    , :id      => 'top-nav-mail-img'                    ,
-                                :onclick => "window.location = '#{mail_url  }' ;" ,
-                                :alt     => "messages"                            %>
-  <%= image_tag 'bell.png'    , :id      => 'top-nav-alerts-img'                  ,
-                                :onclick => "window.location = '#{alerts_url}' ;" ,
-                                :alt     => "notifications"                       %>
-  <%= image_tag 'follows.png' , :id      => 'top-nav-fans-img'                    ,
-                                :onclick => "window.location = '#{fans_url  }' ;" ,
-                                :alt     => "follows"                             %>
-  <%= image_tag 'my-mm.png'   , :id      => 'top-nav-user-img'                    ,
-                                :onclick => "window.location = '#{user_url  }' ;" ,
-                                :alt     => "avatar"                              %>
+<% if signed_in? %>
+  <% mail_url   = LCTV_URL + @lctv_user + '/settings/messages/'      %>
+  <% alerts_url = LCTV_URL + @lctv_user + '/settings/notifications/' %>
+  <% fans_url   = LCTV_URL + @lctv_user + '/settings/followers/'     %>
+  <% user_url   = LCTV_URL + @lctv_user + '/'                        %>
+
+  <a href="<%= mail_url  %>">
+    <%= image_tag 'mail.png'    , :id  => 'top-nav-mail-img'   , :alt => "messages"      %>
+  </a>
+  <a href="<%= alerts_url %>">
+    <%= image_tag 'bell.png'    , :id  => 'top-nav-alerts-img' , :alt => "notifications" %>
+  </a>
+  <a href="<%= fans_url  %>">
+    <%= image_tag 'follows.png' , :id  => 'top-nav-fans-img'   , :alt => "follows"       %>
+  </a>
+  <a href="<%= user_url  %>">
+    <%= image_tag 'my-mm.png'   , :id  => 'top-nav-user-img'   , :alt => "avatar"        %>
+  </a>
+<% else %>
+  <a href="<%= LCTV_URL %>accounts/login"><span id="login-span" >LOGIN  </span></a>
+  <a href="<%= LCTV_URL %>signup"        ><span id="signup-span">SIGN UP</span></a>
 <% end %>
 </span>
