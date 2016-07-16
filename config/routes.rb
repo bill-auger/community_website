@@ -1,6 +1,15 @@
 Lctv::Application.routes.draw do
+
   resources :projects
-  resources :users
+
+  get    'users'            => 'users#index'   , :as => 'users'
+  post   'users'            => 'users#create'
+  get    'users/new'        => 'users#new'     , :as => 'new_user'
+  get    'users/:nick'      => 'users#show'    , :as => 'user'
+  patch  'users/:nick'      => 'users#update'
+  put    'users/:nick'      => 'users#update'
+  delete 'users/:nick'      => 'users#destroy'
+  get    'users/:nick/edit' => 'users#edit'    , :as => 'edit_user'
 
   root :controller => "home" , :action => "home"
 

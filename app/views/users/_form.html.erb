@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :nick %><br>
-    <%= f.text_field :nick , :readonly => true %>
+    <%= f.text_field :nick , :readonly => (not @user.new_record?) %>
   </div>
   <div class="actions">
     <%= f.submit %>

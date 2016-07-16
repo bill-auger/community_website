@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user , notice: 'User was successfully created.' }
       else
         format.html { render action: 'new' }
       end
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if user_params[:nick] == @user.nick && @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user , notice: 'User was successfully updated.' }
       else
         format.html { render action: 'edit' }
       end
@@ -39,9 +39,14 @@ class UsersController < ApplicationController
     end
   end
 
+
 private
+
   def set_user
-    @user = User.find(params[:id])
+    @user = params[:nick].to_i > 0 ? (User.find         params[:nick]) :
+                                     (User.find_by_nick params[:nick])
+
+    redirect_to new_user_path unless @user.present?
   end
 
   def user_params
