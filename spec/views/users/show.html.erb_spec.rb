@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'users/show' , :type => :view do
   before :each do
-    @user = assign :user , (User.create! :nick => 'a-nick')
+    @user = assign :user , (User.create! :nick => 'a-nick' , :uid => 'a-uid')
   end
 
   it "infers the controller path" do

@@ -6,7 +6,7 @@ Feature: Global Site Navigation
 
   Background:
     Given I am on the "Home" page
-    Then  I should see the Logo button in the top navbar
+    Then  I should see the "Logo" button in the top navbar
     Then  I should see the "Home" button in the top navbar
     Then  I should see the "Projects" button in the top navbar
     Then  I should see the "Users" button in the top navbar
@@ -14,8 +14,8 @@ Feature: Global Site Navigation
     Then  I should see the "Emoticons" button in the top navbar
 
   Scenario: Navigate to LCTV page
-    When I click the Logo button in the top navbar
-    Then I should be on the LCTV page
+    When I click the "Logo" button in the top navbar
+    Then I should be on the "LCTV" page
 
   Scenario: Navigate to Home page
     When I click the "Home" button in the top navbar

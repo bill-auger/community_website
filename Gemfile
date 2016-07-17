@@ -34,9 +34,13 @@ end
 gem 'bcrypt-ruby', '~> 3.1.2'
 =end
 
+
+gem 'omniauth'
+
 group :development , :test do
   gem 'sqlite3'
   gem 'byebug'
+  gem 'better_errors'
 end
 
 group :test do

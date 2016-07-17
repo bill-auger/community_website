@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :verify_current_user
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
 
@@ -13,30 +14,24 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
 
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-      else
-        format.html { render action: 'new' }
-      end
+    if @project.save
+      redirect_to @project , :notice => 'Project was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-      else
-        format.html { render action: 'edit' }
-      end
+    if @project.update(project_params)
+      redirect_to @project, notice: 'Project was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
     @project.destroy
-    respond_to do |format|
-      format.html { redirect_to projects_url }
-    end
+    redirect_to projects_url
   end
 
 

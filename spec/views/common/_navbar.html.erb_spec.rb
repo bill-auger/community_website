@@ -1,13 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe 'layouts/_header' , :type => :view do
+
+RSpec.describe 'common/_navbar' , :type => :view do
+  let(:test_user      ) { (User.find_or_create_with_omniauth OmniAuth.config.mock_auth[:default])         }
   let(:mail_img_html  ) { /<img alt="messages" id="top-nav-mail-img" src="\/assets\/mail.png" \/>/        }
   let(:alerts_img_html) { /<img alt="notifications" id="top-nav-alerts-img" src="\/assets\/bell.png" \/>/ }
   let(:fans_img_html  ) { /<img alt="follows" id="top-nav-fans-img" src="\/assets\/follows.png" \/>/      }
   let(:user_img_html  ) { /<img alt="avatar" id="top-nav-user-img" src="\/assets\/my-mm.png" \/>/         }
 
   def expect_nav_btns
-    (expect response).to render_template 'layouts/_header'
+    (expect response).to render_template 'common/_navbar'
     (expect rendered).to match /<img alt="livecoding.tv logo" src="\/assets\/lctv-users-logo.png" \/>/
     (expect rendered).to match /Home/
     (expect rendered).to match /Projects/
@@ -36,7 +38,6 @@ RSpec.describe 'layouts/_header' , :type => :view do
 
   context "when signed out" do
     it "renders the top navbar with login buttons" do
-      assign :lctv_user , ''
       render
 
       expect_nav_btns
@@ -46,7 +47,7 @@ RSpec.describe 'layouts/_header' , :type => :view do
 
   context "when signed in" do
     it "renders the top navbar with user buttons" do
-      assign :lctv_user , 'a-nick'
+      assign :current_user , test_user
       render
 
       expect_nav_btns

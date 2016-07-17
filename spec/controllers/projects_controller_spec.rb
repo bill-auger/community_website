@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.describe ProjectsController , :type => :controller do
 
   let(:valid_attributes  ) { { :name => 'A Project' } }

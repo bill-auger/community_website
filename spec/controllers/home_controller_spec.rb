@@ -1,9 +1,10 @@
 require 'rails_helper'
 
+
 RSpec.describe HomeController , :type => :controller do
   let(:valid_session) { {} }
 
-  describe 'GET #index' do
+  describe 'GET #home' do
     it "assigns the first five projects as @featured_projects" do
       projects = [ (Project.create! :name => 'Project 1' , :desc => 'Desc 1') ,
                    (Project.create! :name => 'Project 2' , :desc => 'Desc 2') ,

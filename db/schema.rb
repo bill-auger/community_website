@@ -25,9 +25,12 @@ ActiveRecord::Schema.define(version: 20160626214750) do
 
   create_table "users", force: true do |t|
     t.string   "nick"
+    t.string   "uid"
     t.string   "bio",        default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["nick"], name: "index_users_on_nick", unique: true
 
 end

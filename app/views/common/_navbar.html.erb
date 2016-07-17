@@ -41,28 +41,26 @@
 </span>
 
 <span id="top-nav-r-span" class="top-nav-cell">
-<% @lctv_user ||= 'SIGNED_IN' %><% def signed_in? ; @lctv_user.present? ; end ; %><!-- FIXME: -->
+<% if @current_user.nil? %>
+  <a href="/auth/developer"      ><span id="login-span" >LOGIN  </span></a>
+  <a href="<%= LCTV_URL %>signup"><span id="signup-span">SIGN UP</span></a>
+<% else %>
+  <% mail_url   = LCTV_URL + @current_user.nick + '/settings/messages/'      %>
+  <% alerts_url = LCTV_URL + @current_user.nick + '/settings/notifications/' %>
+  <% fans_url   = LCTV_URL + @current_user.nick + '/settings/followers/'     %>
+  <% user_url   = LCTV_URL + @current_user.nick + '/'                        %>
 
-<% if signed_in? %>
-  <% mail_url   = LCTV_URL + @lctv_user + '/settings/messages/'      %>
-  <% alerts_url = LCTV_URL + @lctv_user + '/settings/notifications/' %>
-  <% fans_url   = LCTV_URL + @lctv_user + '/settings/followers/'     %>
-  <% user_url   = LCTV_URL + @lctv_user + '/'                        %>
-
-  <a href="<%= mail_url  %>">
+  <a href="<%= mail_url     %>" id="top-nav-mail-a"  >
     <%= image_tag 'mail.png'    , :id  => 'top-nav-mail-img'   , :alt => "messages"      %>
   </a>
-  <a href="<%= alerts_url %>">
+  <a href="<%= alerts_url   %>" id="top-nav-alerts-a">
     <%= image_tag 'bell.png'    , :id  => 'top-nav-alerts-img' , :alt => "notifications" %>
   </a>
-  <a href="<%= fans_url  %>">
+  <a href="<%= fans_url     %>" id="top-nav-fans-a"  >
     <%= image_tag 'follows.png' , :id  => 'top-nav-fans-img'   , :alt => "follows"       %>
   </a>
-  <a href="<%= user_url  %>">
+  <a href="<%= signout_path %>" id="top-nav-user-a"  >
     <%= image_tag 'my-mm.png'   , :id  => 'top-nav-user-img'   , :alt => "avatar"        %>
   </a>
-<% else %>
-  <a href="<%= LCTV_URL %>accounts/login"><span id="login-span" >LOGIN  </span></a>
-  <a href="<%= LCTV_URL %>signup"        ><span id="signup-span">SIGN UP</span></a>
 <% end %>
 </span>

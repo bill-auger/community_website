@@ -1,5 +1,6 @@
 require "rails_helper"
 
+
 RSpec.describe UsersController , :type => :routing do
   describe "routing" do
 
@@ -54,5 +55,6 @@ RSpec.describe UsersController , :type => :routing do
     it "routes to #destroy by nick" do
       (expect :delete => '/users/a-user'     ).to route_to 'users#destroy' , :nick => 'a-user'
     end
+
   end
 end

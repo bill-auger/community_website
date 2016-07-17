@@ -1,0 +1,7 @@
+
+<% flash.each do | key , value | %>
+  <div id="flash-div">
+    <h3 class="flash-header-h3"><%= key %>:</h3>
+    <span class="flash-message-span"><%= value %>:</span>
+  </div>
+<% end %>

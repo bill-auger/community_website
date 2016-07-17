@@ -1,6 +1,8 @@
 Lctv::Application.routes.draw do
 
-  resources :projects
+  post '/auth/:provider/callback' , :to => 'sessions#create'
+  get  '/auth/failure'            , :to => 'sessions#fail'
+  get  '/signout'                 , :to => 'sessions#destroy' , :as => :signout
 
   get    'users'            => 'users#index'   , :as => 'users'
   post   'users'            => 'users#create'
@@ -11,7 +13,9 @@ Lctv::Application.routes.draw do
   delete 'users/:nick'      => 'users#destroy'
   get    'users/:nick/edit' => 'users#edit'    , :as => 'edit_user'
 
-  root :controller => "home" , :action => "home"
+  resources :projects
+
+  root :controller => 'home' , :action => 'home'
 
   get 'badges'    => 'home#badges'
   get 'emoticons' => 'home#emoticons'

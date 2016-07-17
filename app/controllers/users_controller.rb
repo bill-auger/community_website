@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :verify_current_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 
@@ -13,30 +14,24 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user , notice: 'User was successfully created.' }
-      else
-        format.html { render action: 'new' }
-      end
+    if @user.save
+      redirect_to @user , :notice => 'User was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if user_params[:nick] == @user.nick && @user.update(user_params)
-        format.html { redirect_to @user , notice: 'User was successfully updated.' }
-      else
-        format.html { render action: 'edit' }
-      end
+    if user_params[:nick] == @user.nick && @user.update(user_params)
+      redirect_to @user , :notice => 'User was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url }
-    end
+    redirect_to users_url
   end
 
 

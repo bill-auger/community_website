@@ -95,6 +95,13 @@ div {
 #nav-menu-span       { display: none ; } /* TODO: */
 
 
+/* flash messages */
+
+#flash-div { position: absolute ; top: 0 ; right: 100px ; z-index: 30 ;
+             background-image: url('/assets/flash-bg.png') ;
+             background-size: 104% 106% ; padding: 1em 2em 2em 2em ; }
+
+
 /* main content */
 
 #content-div { position: fixed ; left: 0px ; top: 64px ; right: 0px ; bottom: 0px ; }
