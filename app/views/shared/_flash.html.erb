@@ -1,0 +1,8 @@
+
+<% flash.each do | title , message | %>
+  <div class="flash-div flash-<%= title %>">
+    <% title , message = message if message.is_a? Array %>
+    <h3 class="flash-header-h3"><%= title %>:</h3>
+    <span class="flash-message-span"><%= message %></span>
+  </div>
+<% end %>

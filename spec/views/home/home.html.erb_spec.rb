@@ -7,12 +7,14 @@ RSpec.describe 'home/home' , :type => :view do
                                   (Project.create! :name => 'Project 3' , :desc => 'Desc 3') ,
                                   (Project.create! :name => 'Project 4' , :desc => 'Desc 4') ,
                                   (Project.create! :name => 'Project 5' , :desc => 'Desc 5') ]
+    render
+  end
+
+  it "renders the home template" do
+    (expect response).to render_template :home
   end
 
   it "renders featured projects" do
-    render
-
-    (expect response).to render_template :home
     (expect rendered).to match /Featured Projects:/
     (expect rendered).to match /Project 1/
     (expect rendered).to match /Project 2/

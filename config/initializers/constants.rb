@@ -6,3 +6,5 @@ LCTV_USERS_URL     = '/users'
 # LCTV_BADGES_URL    = 'https://badges.livecoding.tv/' # TODO:
 LCTV_BADGES_URL    = '/badges' # TODO:
 LCTV_EMOTICONS_URL = '/emoticons'
+
+NICK_REGEX = /^[a-z]+[a-z_\-]*$/

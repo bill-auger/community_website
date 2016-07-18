@@ -1,17 +1,18 @@
 Lctv::Application.routes.draw do
 
+  get  '/signin'                  , :to => 'sessions#new'     , :as => :signin
+  get  '/signout'                 , :to => 'sessions#destroy' , :as => :signout
   post '/auth/:provider/callback' , :to => 'sessions#create'
   get  '/auth/failure'            , :to => 'sessions#fail'
-  get  '/signout'                 , :to => 'sessions#destroy' , :as => :signout
 
   get    'users'            => 'users#index'   , :as => 'users'
-  post   'users'            => 'users#create'
-  get    'users/new'        => 'users#new'     , :as => 'new_user'
+#   post   'users'            => 'users#create'
+#   get    'users/new'        => 'users#new'     , :as => 'new_user'
   get    'users/:nick'      => 'users#show'    , :as => 'user'
+  get    'users/:nick/edit' => 'users#edit'    , :as => 'edit_user'
   patch  'users/:nick'      => 'users#update'
   put    'users/:nick'      => 'users#update'
   delete 'users/:nick'      => 'users#destroy'
-  get    'users/:nick/edit' => 'users#edit'    , :as => 'edit_user'
 
   resources :projects
 

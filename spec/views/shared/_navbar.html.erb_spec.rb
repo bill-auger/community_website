@@ -1,15 +1,22 @@
 require 'rails_helper'
 
 
-RSpec.describe 'common/_navbar' , :type => :view do
+RSpec.describe 'shared/_navbar' , :type => :view do
   let(:test_user      ) { (User.find_or_create_with_omniauth OmniAuth.config.mock_auth[:default])         }
   let(:mail_img_html  ) { /<img alt="messages" id="top-nav-mail-img" src="\/assets\/mail.png" \/>/        }
   let(:alerts_img_html) { /<img alt="notifications" id="top-nav-alerts-img" src="\/assets\/bell.png" \/>/ }
   let(:fans_img_html  ) { /<img alt="follows" id="top-nav-fans-img" src="\/assets\/follows.png" \/>/      }
   let(:user_img_html  ) { /<img alt="avatar" id="top-nav-user-img" src="\/assets\/my-mm.png" \/>/         }
 
+  before :each do
+    # stubs of application_controller.rb
+    def view.signed_in? ; @current_user.present? ; end ;
+
+    def view.current_user ; @current_user ; end ;
+  end
+
   def expect_nav_btns
-    (expect response).to render_template 'common/_navbar'
+    (expect response).to render_template 'shared/_navbar'
     (expect rendered).to match /<img alt="livecoding.tv logo" src="\/assets\/lctv-users-logo.png" \/>/
     (expect rendered).to match /Home/
     (expect rendered).to match /Projects/

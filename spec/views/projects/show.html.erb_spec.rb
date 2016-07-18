@@ -5,6 +5,8 @@ RSpec.describe 'projects/show' , :type => :view do
     @project = assign :project , (Project.create! :name => 'A Project'                     ,
                                                   :repo => 'https://example.org/user/repo' ,
                                                   :desc => 'A description'                 )
+    # stubs of application_controller.rb
+    def view.authorized_for_project? a_project ; a_project.user == @current_user ; end ;
   end
 
   it "infers the controller path" do

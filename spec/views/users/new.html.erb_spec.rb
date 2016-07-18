@@ -15,12 +15,6 @@ RSpec.describe 'users/new' , :type => :view do
   end
 
   it "renders new user form" do
-    render
-
-    (expect response).to render_template :new
-
-    assert_select 'form[action=?][method=?]' , users_path , :post do
-      assert_select 'input#user_nick[name=?]' , 'user[nick]'
-    end
+    expect { render }.to raise_error ActionView::MissingTemplate
   end
 end

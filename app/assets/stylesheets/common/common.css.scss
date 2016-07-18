@@ -97,9 +97,11 @@ div {
 
 /* flash messages */
 
-#flash-div { position: absolute ; top: 0 ; right: 100px ; z-index: 30 ;
-             background-image: url('/assets/flash-bg.png') ;
-             background-size: 104% 106% ; padding: 1em 2em 2em 2em ; }
+.flash-div     { position: absolute ; top: 0 ; right: 100px ; z-index: 30 ;
+                 background-size: 100% 98% ; padding: 0em 4em 2em 2em ; }
+.flash-notice  { background-image: url('/assets/flash-notice-bg.png') ; }
+.flash-warning { background-image: url('/assets/flash-warning-bg.png') ; }
+.flash-error   { background-image: url('/assets/flash-error-bg.png') ; }
 
 
 /* main content */

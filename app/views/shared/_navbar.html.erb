@@ -41,14 +41,14 @@
 </span>
 
 <span id="top-nav-r-span" class="top-nav-cell">
-<% if @current_user.nil? %>
-  <a href="/auth/developer"      ><span id="login-span" >LOGIN  </span></a>
+<% if not signed_in? %>
+  <a href="<%= signin_path %>"   ><span id="signin-span" >LOGIN </span></a>
   <a href="<%= LCTV_URL %>signup"><span id="signup-span">SIGN UP</span></a>
 <% else %>
-  <% mail_url   = LCTV_URL + @current_user.nick + '/settings/messages/'      %>
-  <% alerts_url = LCTV_URL + @current_user.nick + '/settings/notifications/' %>
-  <% fans_url   = LCTV_URL + @current_user.nick + '/settings/followers/'     %>
-  <% user_url   = LCTV_URL + @current_user.nick + '/'                        %>
+  <% mail_url   = LCTV_URL + current_user.nick + '/settings/messages/'      %>
+  <% alerts_url = LCTV_URL + current_user.nick + '/settings/notifications/' %>
+  <% fans_url   = LCTV_URL + current_user.nick + '/settings/followers/'     %>
+  <% user_url   = LCTV_URL + current_user.nick + '/'                        %>
 
   <a href="<%= mail_url     %>" id="top-nav-mail-a"  >
     <%= image_tag 'mail.png'    , :id  => 'top-nav-mail-img'   , :alt => "messages"      %>

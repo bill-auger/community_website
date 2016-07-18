@@ -1,31 +1,22 @@
 class UsersController < ApplicationController
-  before_action :verify_current_user
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user           , only: [ :show , :edit , :update , :destroy ]
+  before_action :authorize_for_user , only: [         :edit , :update , :destroy ]
 
 
   def index ; @users = User.all ; end ;
 
   def show ; end ;
 
-  def new ; @user = User.new ; end ;
-
   def edit ; end ;
 
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      redirect_to @user , :notice => 'User was successfully created.'
-    else
-      render action: 'new'
-    end
-  end
-
   def update
-    if user_params[:nick] == @user.nick && @user.update(user_params)
-      redirect_to @user , :notice => 'User was successfully updated.'
+    is_valid_update = params[:user][:nick] == @user.nick &&
+                      params[:user][:uid ] == @user.uid
+
+    if is_valid_update && (@user.update user_params)
+      redirect_to @user , :notice => [ "Status" , 'User was successfully updated' ]
     else
-      render action: 'edit'
+      render action: 'edit' , :alert => "Uknown error - Try again"
     end
   end
 
@@ -38,13 +29,27 @@ class UsersController < ApplicationController
 private
 
   def set_user
-    @user = params[:nick].to_i > 0 ? (User.find         params[:nick]) :
-                                     (User.find_by_nick params[:nick])
+    is_friendly_url = params[:nick].to_i == 0
+    @user           = is_friendly_url ? (User.find_by_nick params[:nick]) :
+                                        (User.find         params[:nick])
+    params[:nick]   = @user.nick if @user.present?
 
-    redirect_to new_user_path unless @user.present?
+    redirect_to users_path unless @user.present?
+  end
+
+  def authorize_for_user
+    redirect_to @user , :alert => "Access denied" unless authorized_for_user? @user
   end
 
   def user_params
-    (params[:params] || params).require(:user).permit(:nick , :bio)
+#     ((params[:params] || params).require :user).permit :nick , :uid , :bio
+#     (((params[:params] || params).require :user).require :nick , :uid).permit :bio
+#     ((params.require :user).require :nick , :uid).permit :bio
+    required_params  = params.require :user
+    permitted_params = required_params.permit :nick , :uid , :bio
+
+    permitted_params.require :nick
+    permitted_params.require :uid
+    permitted_params
   end
 end

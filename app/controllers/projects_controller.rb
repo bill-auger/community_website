@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :verify_current_user
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project           , :only => [ :show , :edit , :update , :destroy ]
+  before_action :authorize_for_project , :only => [         :edit , :update , :destroy ]
 
 
   def index ; @projects = Project.all ; end ;
@@ -12,20 +12,20 @@ class ProjectsController < ApplicationController
   def edit ; end ;
 
   def create
-    @project = Project.new(project_params)
+    @project = Project.new project_params
 
     if @project.save
-      redirect_to @project , :notice => 'Project was successfully created.'
+      redirect_to @project , :notice => [ "Status" , 'Project was successfully created' ]
     else
-      render action: 'new'
+      render action: 'new' , :alert => "Uknown error - Try again"
     end
   end
 
   def update
-    if @project.update(project_params)
-      redirect_to @project, notice: 'Project was successfully updated.'
+    if @project.update project_params
+      redirect_to @project , notice: [ "Status" , 'Project was successfully updated' ]
     else
-      render action: 'edit'
+      render action: 'edit' , :alert => "Uknown error - Try again"
     end
   end
 
@@ -41,7 +41,11 @@ private
     @project = Project.find(params[:id])
   end
 
+  def authorize_for_project
+    redirect_to @project , :alert => "Access denied" unless authorized_for_project? @project
+  end
+
   def project_params
-    (params[:params] || params).require(:project).permit(:name , :repo , :desc)
+    ((params[:params] || params).require :project).permit :name , :repo , :desc
   end
 end

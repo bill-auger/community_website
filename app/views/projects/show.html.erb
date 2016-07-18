@@ -1,8 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to '<-- Back' , projects_path                                                         %> |
-<%= link_to 'Edit'     , edit_project_path(@project)                                           %> |
-<%= link_to 'Destroy'  , @project , :method => :delete , :data => { confirm: 'Are you sure?' } %>
+<% edit_path = (authorized_for_project? @project) ? (edit_project_path @project) : '' %>
+<%= render :partial => 'shared/show_nav' , :locals => { :object     => @project      ,
+                                                        :index_path => projects_path ,
+                                                        :edit_path  => edit_path     } %>
 
 <h1><%= @project.name %></h1>
 

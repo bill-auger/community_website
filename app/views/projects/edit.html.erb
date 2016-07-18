@@ -1,6 +1,6 @@
-<%= link_to '<-- Back' , projects_path %> |
-<%= link_to 'Cancel'   , @project      %>
+<%= render :partial => 'shared/edit_nav' , :locals => { :object     => @project      ,
+                                                        :index_path => projects_path } %>
 
-<h1>Edit Project: <%= @project.name %></h1>
+<h1>Editting <%= @project.name %></h1>
 
 <%= render 'form' %>
