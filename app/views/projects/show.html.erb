@@ -5,6 +5,9 @@
 
 <h1><%= @project.name %></h1>
 
+<p><strong>Maintainer:</strong></p>
+<%= @project.user.nick %>
+
 <% if @project.repo.present? %>
   <div>
     <p><strong>Repo URL:</strong></p>

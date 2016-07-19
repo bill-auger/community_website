@@ -1,10 +1,13 @@
 require 'rails_helper'
 
+
 RSpec.describe 'projects/edit' , :type => :view do
   before :each do
-    @project = assign :project , (Project.create! :name => 'A Project'                     ,
-                                                  :repo => 'https://example.org/user/repo' ,
-                                                  :desc => 'A description'                 )
+    @this_user = User.create! :nick => 'a-name' , :uid => 'a-uid'
+    @project   = assign :project , (Project.create! :name    => 'A Project'                     ,
+                                                    :repo    => 'https://example.org/user/repo' ,
+                                                    :desc    => 'A description'                 ,
+                                                    :user_id => 1                               )
   end
 
   it "infers the controller path" do

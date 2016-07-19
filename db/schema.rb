@@ -17,16 +17,20 @@ ActiveRecord::Schema.define(version: 20160626214750) do
     t.string   "name"
     t.string   "repo",       default: ""
     t.text     "desc",       default: ""
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "projects", ["name"], name: "index_projects_on_name", unique: true
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "nick"
     t.string   "uid"
+    t.string   "avatar",     default: ""
     t.string   "bio",        default: ""
+    t.boolean  "is_admin",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

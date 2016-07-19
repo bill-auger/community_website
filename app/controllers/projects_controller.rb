@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
-  before_action :set_project           , :only => [ :show , :edit , :update , :destroy ]
-  before_action :authorize_for_project , :only => [         :edit , :update , :destroy ]
+  before_action :set_project           , :only => [ :edit , :update , :destroy , :show ]
+  before_action :authorize_for_project , :only => [ :edit , :update , :destroy ]
+  before_action :authenticate_user     , :only => [ :new , :create ]
 
 
   def index ; @projects = Project.all ; end ;
@@ -12,12 +13,12 @@ class ProjectsController < ApplicationController
   def edit ; end ;
 
   def create
-    @project = Project.new project_params
+    @project = current_user.projects.create project_params
 
     if @project.save
       redirect_to @project , :notice => [ "Status" , 'Project was successfully created' ]
     else
-      render action: 'new' , :alert => "Uknown error - Try again"
+      render action: 'new' , :alert => "Unknown error - Try again"
     end
   end
 
@@ -25,7 +26,7 @@ class ProjectsController < ApplicationController
     if @project.update project_params
       redirect_to @project , notice: [ "Status" , 'Project was successfully updated' ]
     else
-      render action: 'edit' , :alert => "Uknown error - Try again"
+      render action: 'edit' , :alert => "Unknown error - Try again"
     end
   end
 

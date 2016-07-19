@@ -1,9 +1,11 @@
 require 'rails_helper'
 
+
 RSpec.describe 'projects/index' , :type => :view do
   before :each do
-    assign :projects , [ (Project.create! :name => 'A Project'       , :desc => 'A Description'      ) ,
-                         (Project.create! :name => 'Another Project' , :desc => 'Another Description') ]
+    @this_user = User.create! :nick => 'a-name' , :uid => 'a-uid'
+    assign :projects , [ (Project.create! :name => 'A Project'       , :desc => 'A Description'       , :user_id => 1) ,
+                         (Project.create! :name => 'Another Project' , :desc => 'Another Description' , :user_id => 1) ]
   end
 
   it "renders a list of projects" do

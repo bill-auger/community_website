@@ -8,12 +8,6 @@ RSpec.describe 'shared/_navbar' , :type => :view do
   let(:fans_img_html  ) { /<img alt="follows" id="top-nav-fans-img" src="\/assets\/follows.png" \/>/      }
   let(:user_img_html  ) { /<img alt="avatar" id="top-nav-user-img" src="\/assets\/my-mm.png" \/>/         }
 
-  before :each do
-    # stubs of application_controller.rb
-    def view.signed_in? ; @current_user.present? ; end ;
-
-    def view.current_user ; @current_user ; end ;
-  end
 
   def expect_nav_btns
     (expect response).to render_template 'shared/_navbar'

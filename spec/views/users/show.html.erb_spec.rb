@@ -3,9 +3,6 @@ require 'rails_helper'
 RSpec.describe 'users/show' , :type => :view do
   before :each do
     @user = assign :user , (User.create! :nick => 'a-nick' , :uid => 'a-uid')
-
-    # stubs of application_controller.rb
-    def view.authorized_for_user? a_user ; a_user == @current_user ; end ;
   end
 
   it "infers the controller path" do

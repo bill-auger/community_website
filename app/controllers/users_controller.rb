@@ -14,7 +14,7 @@ class UsersController < ApplicationController
                       params[:user][:uid ] == @user.uid
 
     if is_valid_update && (@user.update user_params)
-      redirect_to @user , :notice => [ "Status" , 'User was successfully updated' ]
+      redirect_to @user , :notice => [ "Status" , "User was successfully updated" ]
     else
       render action: 'edit' , :alert => "Uknown error - Try again"
     end
@@ -42,9 +42,6 @@ private
   end
 
   def user_params
-#     ((params[:params] || params).require :user).permit :nick , :uid , :bio
-#     (((params[:params] || params).require :user).require :nick , :uid).permit :bio
-#     ((params.require :user).require :nick , :uid).permit :bio
     required_params  = params.require :user
     permitted_params = required_params.permit :nick , :uid , :bio
 

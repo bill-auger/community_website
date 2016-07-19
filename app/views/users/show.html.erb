@@ -1,5 +1,6 @@
 <% edit_path = (authorized_for_user? @user) ? (edit_user_path @user) : '' %>
-<%= render :partial => 'shared/show_nav' , :locals => { :index_path => users_path ,
+<%= render :partial => 'shared/show_nav' , :locals => { :object     => @project   ,
+                                                        :index_path => users_path ,
                                                         :edit_path  => edit_path  } %>
 
 <h1><%= @user.nick %>'s Profile</h1>

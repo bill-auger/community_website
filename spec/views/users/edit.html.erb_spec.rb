@@ -1,15 +1,12 @@
 require 'rails_helper'
 
+
 RSpec.describe 'users/edit' , :type => :view do
   before :each do
-    @user = assign :user , (User.create! :nick => 'a-nick' , :uid => 'a-uid')
-
-    # stubs of application_controller.rb
-    def view.admin?
-#     @current_user.is_admin
-      false
-    end
+    @user         = assign :user         , (User.create! :nick => 'a-nick' , :uid => 'a-uid')
+    @current_user = assign :current_user , @user
   end
+
 
   it "infers the controller path" do
     (expect controller.request.path_parameters[:controller]).to eq 'users'
