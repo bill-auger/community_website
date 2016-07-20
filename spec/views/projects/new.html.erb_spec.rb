@@ -19,7 +19,7 @@ RSpec.describe 'projects/new' , :type => :view do
 
     (expect response).to render_template :new
 
-    assert_select 'form[action=?][method=?]' , projects_path , :post do
+    assert_select 'form' , :action => projects_path , :method => :post do
       assert_select 'input#project_name[name=?]'    , 'project[name]'
       assert_select 'input#project_repo[name=?]'    , 'project[repo]'
       assert_select 'textarea#project_desc[name=?]' , 'project[desc]'

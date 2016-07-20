@@ -1,31 +1,3 @@
-<script>
-  /**\
-  |**| @licstart  The following is the entire license notice for the
-  |**| JavaScript code in this page.
-  |**|
-  |**| Copyright 2016 bill-auger <bill-auger@programmer.net>
-  |**|
-  |**|
-  |**| The JavaScript code in this page is free software: you can
-  |**| redistribute it and/or modify it under the terms of the GNU
-  |**| General Public License (GNU GPL) as published by the Free Software
-  |**| Foundation, either version 3 of the License, or (at your option)
-  |**| any later version.  The code is distributed WITHOUT ANY WARRANTY;
-  |**| without even the implied warranty of MERCHANTABILITY or FITNESS
-  |**| FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-  |**|
-  |**| As additional permission under GNU GPL version 3 section 7, you
-  |**| may distribute non-source (e.g., minimized or compacted) forms of
-  |**| that code without the copy of the GNU GPL normally required by
-  |**| section 4, provided you include this license notice and a URL
-  |**| through which recipients can access the Corresponding Source.
-  |**|
-  |**| @licend  The above is the entire license notice
-  |**| for the JavaScript code in this page.
-  \**/
-</script>
-
-
 <span id="top-nav-l-span" class="top-nav-cell">
   <a href="<%= LCTV_URL %>" id="top-nav-logo-a">
     <%= image_tag 'lctv-users-logo.png' , :alt => 'livecoding.tv logo' %>
@@ -36,31 +8,34 @@
   <a href="/">Home</a>
   <a href="<%= LCTV_PROJECTS_URL  %>">Projects</a>
   <a href="<%= LCTV_USERS_URL     %>">Users</a>
+  <a href="<%= LCTV_FORUM_URL     %>">Forum</a>
+  <a href="<%= LCTV_POLLS_URL     %>">Polls</a>
   <a href="<%= LCTV_BADGES_URL    %>">Badges</a>
   <a href="<%= LCTV_EMOTICONS_URL %>">Emoticons</a>
 </span>
 
 <span id="top-nav-r-span" class="top-nav-cell">
-<% if not signed_in? %>
-  <a href="<%= signin_path %>"   ><span id="signin-span" >LOGIN </span></a>
-  <a href="<%= LCTV_URL %>signup"><span id="signup-span">SIGN UP</span></a>
-<% else %>
-  <% mail_url   = LCTV_URL + current_user.nick + '/settings/messages/'      %>
-  <% alerts_url = LCTV_URL + current_user.nick + '/settings/notifications/' %>
-  <% fans_url   = LCTV_URL + current_user.nick + '/settings/followers/'     %>
-  <% user_url   = LCTV_URL + current_user.nick + '/'                        %>
+  <% if not signed_in? %>
+    <a href="<%= signin_path %>"   ><span id="signin-span">LOGIN</span></a>
+    <a href="<%= LCTV_URL %>signup"><span id="signup-span">SIGN UP</span></a>
+  <% else %>
+    <% mail_url   = LCTV_URL + current_user.nick   + '/settings/messages/'      %>
+    <% alerts_url = LCTV_URL + current_user.nick   + '/settings/notifications/' %>
+    <% fans_url   = LCTV_URL + current_user.nick   + '/settings/followers/'     %>
+    <% user_url   = LCTV_URL + current_user.nick   + '/'                        %>
+    <% avatar_url =            current_user.avatar                              %>
 
-  <a href="<%= mail_url     %>" id="top-nav-mail-a"  >
-    <%= image_tag 'mail.png'    , :id  => 'top-nav-mail-img'   , :alt => "messages"      %>
-  </a>
-  <a href="<%= alerts_url   %>" id="top-nav-alerts-a">
-    <%= image_tag 'bell.png'    , :id  => 'top-nav-alerts-img' , :alt => "notifications" %>
-  </a>
-  <a href="<%= fans_url     %>" id="top-nav-fans-a"  >
-    <%= image_tag 'follows.png' , :id  => 'top-nav-fans-img'   , :alt => "follows"       %>
-  </a>
-  <a href="<%= signout_path %>" id="top-nav-user-a"  >
-    <%= image_tag 'my-mm.png'   , :id  => 'top-nav-user-img'   , :alt => "avatar"        %>
-  </a>
-<% end %>
+    <a href="<%= mail_url     %>" id="top-nav-mail-a"  >
+      <%= image_tag 'mail.png'    , :id  => 'top-nav-mail-img'   , :alt => "messages"      %>
+    </a>
+    <a href="<%= alerts_url   %>" id="top-nav-alerts-a">
+      <%= image_tag 'bell.png'    , :id  => 'top-nav-alerts-img' , :alt => "notifications" %>
+    </a>
+    <a href="<%= fans_url     %>" id="top-nav-fans-a"  >
+      <%= image_tag 'follows.png' , :id  => 'top-nav-fans-img'   , :alt => "follows"       %>
+    </a>
+    <a href="<%= signout_path %>" id="top-nav-user-a"  >
+      <%= image_tag avatar_url    , :id  => 'top-nav-user-img'   , :alt => "avatar"        %>
+    </a>
+  <% end %>
 </span>

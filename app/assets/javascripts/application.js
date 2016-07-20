@@ -10,6 +10,10 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require cocoon
 //= require_tree ./common/
 /**\
 |**| @source: https://raw.githubusercontent.com/LiveCodingTVOfficial/community_website/master/app/assets/javascripts/application.js

@@ -43,8 +43,7 @@ private
 
   def user_params
     required_params  = params.require :user
-    permitted_params = required_params.permit :nick , :uid , :bio
-
+    permitted_params = required_params.permit :nick , :uid , :bio , :avatar , :is_admin
     permitted_params.require :nick
     permitted_params.require :uid
     permitted_params

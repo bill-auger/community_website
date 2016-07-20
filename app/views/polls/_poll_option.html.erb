@@ -1,0 +1,8 @@
+<li>
+  <%= content_tag :label do %>
+    <% is_selected = poll_option.id == selected_option_id %>
+
+    <%= radio_button_tag 'poll_option[id]' , poll_option.id , is_selected , :onclick => "document.getElementById('vote_form').querySelector('input[type=submit]').style.display = '#{is_selected ? 'none' : 'inline'}' ;" %>
+    <%= poll_option.option %>
+  <% end %>
+</li>

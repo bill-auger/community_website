@@ -24,7 +24,7 @@ RSpec.describe 'users/edit' , :type => :view do
     (expect rendered).to     match /a-nick/
     (expect rendered).not_to match /<input id="user_uid" name="user[uid]" type="text" value="a-uid" \/>/
 
-    assert_select 'form[action=?][method=?]' , user_path(@user) , :post do
+    assert_select 'form' , :action => user_path(@user) , :method => :post do
       assert_select 'input#user_bio[name=?]' , 'user[bio]'
     end
   end

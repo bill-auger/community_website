@@ -58,7 +58,7 @@ RSpec.describe SessionsController , :type => :controller do
 
     context "with valid auth_hash for known user" do
       before do
-        @user = User.create! :nick => 'test-name' , :uid => 'test-uid'
+        @user = User.create! :nick => 'mock-nick' , :uid => 'test-uid'
         request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:default]
       end
 

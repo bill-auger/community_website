@@ -27,7 +27,7 @@ RSpec.describe 'projects/edit' , :type => :view do
     (expect rendered).to match /https:\/\/example.org\/user\/repo/
     (expect rendered).to match /A description/
 
-    assert_select 'form[action=?][method=?]' , project_path(@project) , :post do
+    assert_select 'form' , :action => project_path(@project) , :method => :post do
       assert_select 'input#project_name[name=?]'    , 'project[name]'
       assert_select 'input#project_repo[name=?]'    , 'project[repo]'
       assert_select 'textarea#project_desc[name=?]' , 'project[desc]'

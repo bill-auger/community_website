@@ -1,5 +1,5 @@
-<%= link_to '<-- Back' , index_path %>&nbsp;|&nbsp;
-<% if edit_path.present? %>
+<%= link_to '<-- Back' , index_path %>
+<% if edit_path.present? %>&nbsp;|&nbsp;
 <%= link_to 'Edit'     , edit_path  %>&nbsp;|&nbsp;
 <%= link_to 'Destroy'  , object , :method => :delete , :data => { confirm: 'Are you sure?' } %>
 <% end %>

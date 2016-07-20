@@ -1,0 +1,16 @@
+<%= form_tag vote_path , :method => :post , :remote => true , :id => 'vote_form' do %>
+  <%= hidden_field_tag 'poll[id]' , @poll.id %>
+
+  <% if @poll.poll_options.size > 0 %>
+    <strong>Poll Options: </strong>
+    <ul>
+      <% selected_option_id = @selected_option.id if @selected_option.present? %>
+      <%= render :partial    => 'polls/poll_option'                           ,
+                 :collection => @poll.poll_options                            ,
+                 :as         => :poll_option                                  ,
+                 :locals     => { :selected_option_id => selected_option_id } %>
+    </ul>
+
+    <%= submit_tag 'Vote' , :style => "display: none ;" %>
+  <% end %>
+<% end %>

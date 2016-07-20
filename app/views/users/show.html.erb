@@ -1,5 +1,5 @@
 <% edit_path = (authorized_for_user? @user) ? (edit_user_path @user) : '' %>
-<%= render :partial => 'shared/show_nav' , :locals => { :object     => @project   ,
+<%= render :partial => 'shared/show_nav' , :locals => { :object     => @user      ,
                                                         :index_path => users_path ,
                                                         :edit_path  => edit_path  } %>
 

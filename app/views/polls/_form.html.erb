@@ -1,0 +1,52 @@
+<%= form_for @poll do |f| %>
+  <% if @poll.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@poll.errors.count, "error") %> prohibited this poll from being saved:</h2>
+
+      <ul>
+      <% @poll.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <div class="field">
+    <%= f.label :topic %>:<br>
+    <%= f.text_area :topic , :size => "25x1" , :required => true %>
+  </div>
+  <% unless @poll.new_record? %><br>
+    <div class="field">
+      <%= f.label :is_open %>?:<br>
+      <%= f.check_box :is_open %>
+    </div>
+  <% end %>
+
+  <!-- belongs_to Project association -->
+  <% if @projects.count > 0 %>
+    <div>Project: </div>
+    <%= f.collection_select :project_id , @projects , :id , :name , :include_blank => POLL_PROJECT_PROMPT %>
+  <% end %>
+
+  <!-- has_many PollOption nested association -->
+  <% unless @poll.new_record? %><!-- FIXME: -->
+    <div>Poll Options: </div>
+      <div>
+        <%= f.fields_for :poll_options do | options_form | %>
+          <%= render 'poll_option_fields' , :f => options_form %>
+        <% end %>
+
+        <div class="links">
+          <%= link_to_add_association 'Add Option' , f , :poll_options %>
+        </div>
+        <div class="links">
+     <!-- <%= link_to_add_association 'Add "Other" Option' , f , :poll_options %> --><!-- TODO: -->
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+

@@ -1,0 +1,30 @@
+<% edit_path = (authorized_for_poll? @poll) ? (edit_poll_path @poll) : '' %>
+<%= render :partial => 'shared/show_nav' , :locals => { :object     => @poll      ,
+                                                        :index_path => polls_path ,
+                                                        :edit_path  => edit_path  } %>
+
+<p>
+  <strong>Topic: </strong>
+  <%= @poll.topic %>
+</p>
+
+<p>
+  <strong>Maintainer: </strong>
+  <%= @poll.user.nick %>
+</p>
+
+<% if @poll.project.present? %>
+  <p>
+    <strong>Project: </strong>
+    <%= @poll.project.name %>
+  </p>
+<% end %>
+
+<% if authorized_for_poll? @poll %>
+<p>
+  <strong>Is open?: </strong>
+  <%= @poll.is_open %>
+</p>
+<% end %>
+
+<%= render 'vote_form' %>

@@ -3,10 +3,10 @@ require 'rails_helper'
 
 RSpec.describe 'shared/_navbar' , :type => :view do
   let(:test_user      ) { (User.find_or_create_with_omniauth OmniAuth.config.mock_auth[:default])         }
-  let(:mail_img_html  ) { /<img alt="messages" id="top-nav-mail-img" src="\/assets\/mail.png" \/>/        }
-  let(:alerts_img_html) { /<img alt="notifications" id="top-nav-alerts-img" src="\/assets\/bell.png" \/>/ }
-  let(:fans_img_html  ) { /<img alt="follows" id="top-nav-fans-img" src="\/assets\/follows.png" \/>/      }
-  let(:user_img_html  ) { /<img alt="avatar" id="top-nav-user-img" src="\/assets\/my-mm.png" \/>/         }
+  let(:mail_img_html  ) { /<img id="top-nav-mail-img" alt="messages" src="\/assets\/mail.png" \/>/        }
+  let(:alerts_img_html) { /<img id="top-nav-alerts-img" alt="notifications" src="\/assets\/bell.png" \/>/ }
+  let(:fans_img_html  ) { /<img id="top-nav-fans-img" alt="follows" src="\/assets\/follows.png" \/>/      }
+  let(:user_img_html  ) { /<img id="top-nav-user-img" alt="avatar" src="\/assets\/my-mm.png" \/>/         }
 
 
   def expect_nav_btns
@@ -48,6 +48,7 @@ RSpec.describe 'shared/_navbar' , :type => :view do
 
   context "when signed in" do
     it "renders the top navbar with user buttons" do
+      session[:user_id] = 1
       assign :current_user , test_user
       render
 

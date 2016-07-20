@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+# gem 'rails', '4.0.2' # bug in activerecord-4.0.2/lib/active_record/associations/has_many_association.rb:81
+gem 'rails', '4.2.6'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -15,13 +16,13 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
-=begin
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
+=begin
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
@@ -36,17 +37,20 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 
 gem 'omniauth'
+gem 'cocoon'
 
 group :development , :test do
   gem 'sqlite3'
   gem 'byebug'
   gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
   gem 'rspec-rails' , '~> 3.5'
   gem 'cucumber-rails' , :require => false
   gem 'database_cleaner'
+  gem 'poltergeist'
 end
 
 group :production do
