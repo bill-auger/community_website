@@ -20,11 +20,38 @@
   </p>
 <% end %>
 
-<% if authorized_for_poll? @poll %>
-<p>
-  <strong>Is open?: </strong>
-  <%= @poll.is_open %>
-</p>
+<% if (authorized_for_poll? @poll) %>
+  <p>
+    <strong>Is open?: </strong>
+    <%= @poll.is_open %>
+  </p>
 <% end %>
 
-<%= render 'vote_form' %>
+<% if (authorized_for_poll? @poll) || (not @poll.is_open) %>
+  <% if @poll.poll_options.size > 0 %>
+    <% total_votes = (@poll.poll_options.map { |ea| ; ea.votes.size ; }).sum %>
+    <strong>Poll Options:</strong><%= " (#{total_votes} votes)" %>
+
+    <div id="poll-results-div">
+      <% @poll.poll_options.each do | poll_option | %>
+        <% these_votes = poll_option.votes.size %>
+        <% percentage = total_votes == 0 ? 0 : (these_votes * 100) / total_votes %>
+        <div id="poll-result-div">
+          <div id="poll-percent-div" style="width: <%= percentage %>% ;">
+            <%= poll_option.option %>
+            <%= "- #{these_votes} votes - " %>
+            <%= total_votes > 0 ? "#{percentage} %" : "n/a" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+<style>
+#poll-results-div { position: relative ; left: 1em ; top: 1em ; width: 40% ;
+                    border: 1px solid #0F0 ; }
+#poll-percent-div { position: relative ; white-space: nowrap ;
+                    border: 1px solid #080 ; background-color: #060  }
+</style>
+  <% end %>
+<% else %>
+  <%= render 'vote_form' %>
+<% end %>
